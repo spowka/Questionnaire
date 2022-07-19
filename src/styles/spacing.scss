@@ -1,0 +1,30 @@
+$max: 1.5;
+$offset: .25;
+$unit: 'rem';
+
+@mixin spacing($className, $styleName) {
+  $i: 0.5;
+  $j: 1;
+
+  @while $i <=$max {
+    #{$className + $j} {
+      #{$styleName}: #{$i + $unit} !important;
+    }
+
+    $i: $i+$offset;
+    $j: $j+1;
+  }
+}
+
+// margins
+@include spacing('.m-', 'margin');
+@include spacing('.ml-', 'margin-left');
+@include spacing('.mr-', 'margin-right');
+@include spacing('.mt-', 'margin-top');
+@include spacing('.mb-', 'margin-bottom');
+
+// paddings
+@include spacing('.p-', 'padding');
+@include spacing('.pl-', 'padding-left');
+@include spacing('.pr-', 'padding-right');
+@include spacing('.pt-', 'padding-top');

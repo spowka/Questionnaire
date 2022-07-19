@@ -1,0 +1,14 @@
+.questions-list {
+  column-gap: 30px;
+  align-items: flex-start;
+
+  &__wrapper {
+    width: calc(100% / 2 - 15px);
+
+    .mat-card {
+      margin-bottom: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+  }
+}

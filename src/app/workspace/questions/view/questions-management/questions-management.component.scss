@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+
+  .mat-header-cell.mat-column-actions {
+    text-align: right;
+  }
+
+  .mat-header-cell.mat-column-createdAt,
+  .mat-header-cell.mat-column-updatedAt,
+  .mat-cell.mat-column-createdAt,
+  .mat-cell.mat-column-updatedAt {
+    text-align: center;
+
+    &::ng-deep.mat-sort-header-container {
+      justify-content: center;
+    }
+  }
+
+  .mat-cell.mat-column-text {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

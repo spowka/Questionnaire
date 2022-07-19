@@ -1,0 +1,61 @@
+<div class="questions-list flex-row flex-row__btw">
+  <button mat-fab color="primary" class="page-back" [routerLink]="['/questions']">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <ng-container>
+    <div class="questions-list__wrapper flex-col">
+      <h2>Unanswered</h2>
+      <mat-card class="w-100" *ngFor="let question of questions | filter: 'answered': false">
+        <mat-card-subtitle>{{ question.id }}</mat-card-subtitle>
+        <mat-card-title>{{ question.text }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ EQuestionTypes[question.type] }}</p>
+
+          <div [ngSwitch]="EQuestionTypes[question.type]">
+            <div class="flex-col flex-col__start" *ngSwitchCase="EQuestionTypes.multiple_choice">
+              <mat-checkbox (change)="onChangeAnswer(question, answer, $event.checked)" color="primary"
+                *ngFor="let answer of question.answers" [value]="answer">{{answer}}
+              </mat-checkbox>
+            </div>
+            <div *ngSwitchCase="EQuestionTypes.single_choice">
+              <mat-radio-group (change)="onChangeAnswer(question, $event.value)" color="primary"
+                class="flex-col flex-col__start">
+                <mat-radio-button class="mb-1" *ngFor="let answer of question.answers" [value]="answer">
+                  {{answer}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngSwitchCase="EQuestionTypes.open">
+              <mat-form-field class="w-100">
+                <mat-label>Answer</mat-label>
+                <textarea #textarea rows="3" matInput placeholder="Your Answer"
+                  (change)="onChangeAnswer(question, textarea.value)"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="onAnswerQuestion(question)"
+            [disabled]="!answers[question.id]">Answer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="questions-list__wrapper flex-col">
+      <h2>Answered</h2>
+      <mat-card class="w-100" *ngFor="let question of questions | filter: 'answered': true">
+        <mat-card-subtitle>{{ question.id }}</mat-card-subtitle>
+        <mat-card-title>{{ question.text }}</mat-card-title>
+        <mat-card-content>
+          <p>{{ EQuestionTypes[question.type] }}</p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <!-- <mat-card-actions> -->
+        <!-- <button mat-button color="primary">Answer</button> -->
+        <!-- </mat-card-actions> -->
+      </mat-card>
+    </div>
+  </ng-container>
+</div>
