@@ -1,8 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { EQuestionTypes } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/services/question.service';
@@ -34,7 +33,7 @@ export class QuestionsCreateComponent implements OnInit {
     private fb: FormBuilder,
     private questionService: QuestionService,
     private route: ActivatedRoute,
-    private toastr: ToastrService, private router: Router
+    private router: Router
   ) {
     this.form = this.initForm();
 

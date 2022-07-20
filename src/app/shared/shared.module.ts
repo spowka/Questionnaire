@@ -14,7 +14,7 @@ import { FilterPipe } from './pipes/filter.pipe';
   exports: [
     MaterialDesignModule,
     TypeSafeMatCellDef,
-    FilterPipe
+    FilterPipe,
   ]
 })
 export class SharedModule { }

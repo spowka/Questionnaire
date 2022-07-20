@@ -50,11 +50,14 @@
         <mat-card-title>{{ question.text }}</mat-card-title>
         <mat-card-content>
           <p>{{ EQuestionTypes[question.type] }}</p>
+          <div class="flex-col flex-col__start" *ngFor="let answer of $any(question.answered)">
+            {{ answer }}
+          </div>
         </mat-card-content>
         <mat-divider inset></mat-divider>
-        <!-- <mat-card-actions> -->
-        <!-- <button mat-button color="primary">Answer</button> -->
-        <!-- </mat-card-actions> -->
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="onUnAnswerQuestion(question)">Unanswer</button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </ng-container>

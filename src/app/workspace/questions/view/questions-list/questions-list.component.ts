@@ -1,7 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { EQuestionTypes, IQuestion } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/services/question.service';
 
@@ -51,6 +51,12 @@ export class QuestionsListComponent implements OnInit {
 
     question.answered = this.answers[question.id]
     question.answeredDate = new Date().toUTCString()
+    this.questionService.updateQuestion(question)
+  }
+
+  public onUnAnswerQuestion(question: IQuestion) {
+    question.answered = false
+    question.answeredDate = ''
     this.questionService.updateQuestion(question)
   }
 

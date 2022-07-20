@@ -5,10 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
     pure: false
 })
 export class FilterPipe implements PipeTransform {
-    transform<T extends {[key: string]: any}>(items: T[], key: string, value: any): T[] {
-        if (!items || !key || !value) {
+    transform<T extends { [key: string]: any }>(items: T[], key: string, value: boolean): T[] {
+        if (!items || !key) {
             return items;
         }
-        return items.filter(item => item[key] === value);
+
+        return items.filter(item => item[key].length ? !!item[key].length === value : item[key] === value);
     }
 }
